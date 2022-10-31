@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Movie = ({ movie }) => {
+  console.log('movie');
 
   const imgStyles = {
     height: '350px',
@@ -8,7 +9,7 @@ const Movie = ({ movie }) => {
   }
   //objectPosition: 'center
 
-  const isFavorite = true;
+  const isFavorite = false;
 
   return (
     <div className='card'>
