@@ -7,7 +7,7 @@ const UserContext = createContext();
 const initialUser = { 
     id: 1, 
     name: 'Matu', 
-    favoriteMovies: [1,2,3]
+    favoriteMovies: [1,2]
 }
 
 export const UserProvider = ({ children }) => {
@@ -22,8 +22,20 @@ export const UserProvider = ({ children }) => {
         setUser(null);
     };
 
-    const data = { user, login, logout }
-    
+    const toggleFavoriteMovieToUser = (movieId) => {
+        const isFavorite = user.favoriteMovies.includes(movieId);
+        const favoriteMovies = isFavorite
+            ? user.favoriteMovies.filter(favMovId => favMovId != movieId) //Delete
+            : [...user.favoriteMovies, movieId] //Add
+
+        setUser({
+            ...user,
+            favoriteMovies
+        })
+    }
+
+    const data = { user, login, logout, toggleFavoriteMovieToUser }
+
     return (
         <UserContext.Provider value={data}>
             {children}
